@@ -1,0 +1,17 @@
+{
+  "name": "node-starter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node ./controllers/habits.controller.js",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix --fix-suggestions"
+  },
+  "dependencies": {
+    "@types/node": "^24.0.1",
+    "dotenv": "^16.5.0"
+  },
+  "devDependencies": {
+    "oxlint": "^1.1.0"
+  }
+}
