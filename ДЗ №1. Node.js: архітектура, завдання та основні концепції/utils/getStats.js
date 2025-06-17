@@ -8,8 +8,7 @@ const addDays = (date, days) => {
 };
 
 export const getHabitStats = (habits) => {
-  const now = addDays(new Date(), cfg.dayOffset); // cfg.dayOffset);
-  // Генеруємо масив дат (у форматі YYYY-MM-DD) для заданої кількості днів назад, включаючи сьогодні
+  const now = addDays(new Date(), cfg.dayOffset);
   function getLastNDays(n) {
     return Array.from({ length: n }, (_, i) => {
       const date = new Date(now);
@@ -25,16 +24,13 @@ export const getHabitStats = (habits) => {
     let percent = 0;
 
     if (freq === 'daily') {
-      // Тільки сьогоднішній день
       const today = now.toISOString().slice(0, 10);
       percent = doneDays.has(today) ? 100 : 0;
     } else if (freq === 'weekly') {
-      // За 7 днів
       const last7Days = getLastNDays(7);
       const completed = last7Days.filter((day) => doneDays.has(day)).length;
       percent = Math.round((completed / 7) * 100);
     } else if (freq === 'monthly') {
-      // За 30 днів
       const last30Days = getLastNDays(30);
       const completed = last30Days.filter((day) => doneDays.has(day)).length;
       percent = Math.round((completed / 30) * 100);
