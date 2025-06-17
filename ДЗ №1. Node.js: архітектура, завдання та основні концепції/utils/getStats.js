@@ -7,30 +7,39 @@ const addDays = (date, days) => {
   return result;
 };
 
+
 export const getHabitStats = (habits) => {
   const now = addDays(new Date(), cfg.dayOffset);
-  function getLastNDays(n) {
+  const getLastNDays = (n) => {
     return Array.from({ length: n }, (_, i) => {
       const date = new Date(now);
       date.setDate(now.getDate() - i);
-
+  
       return date.toISOString().slice(0, 10);
     });
   }
-
+  
   return habits.map((habit) => {
     const { name, freq, done } = habit;
     const doneDays = new Set((done || []).map((d) => d.slice(0, 10)));
     let percent = 0;
 
-    if (freq === 'daily') {
+    const isDailyHabit = freq === 'daily';
+    const isWeeklyHabit = freq === 'weekly';
+    const isMonthlyHabit = freq === 'monthly';
+
+    if (isDailyHabit) {
       const today = now.toISOString().slice(0, 10);
       percent = doneDays.has(today) ? 100 : 0;
-    } else if (freq === 'weekly') {
+    } 
+    
+    if (isWeeklyHabit) {
       const last7Days = getLastNDays(7);
       const completed = last7Days.filter((day) => doneDays.has(day)).length;
       percent = Math.round((completed / 7) * 100);
-    } else if (freq === 'monthly') {
+    } 
+    
+    if (isMonthlyHabit) {
       const last30Days = getLastNDays(30);
       const completed = last30Days.filter((day) => doneDays.has(day)).length;
       percent = Math.round((completed / 30) * 100);
