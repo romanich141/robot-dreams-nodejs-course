@@ -1,9 +1,14 @@
 {
-  "rules": {
-    "no-unused-vars": "error",
-    "react/jsx-no-undef": "warn",
-    "no-debugger": "off",
-    "eqeqeq": "warn"
-  },
-  "ignorePatterns": ["dist/", "node_modules/"]
+   "rules": {
+      "no-unused-vars": "error",
+      "react/jsx-no-undef": "warn",
+      "no-debugger": "off",
+      "eqeqeq": "warn",
+      "indent": ["error", 2],
+      "max-len": ["error", { "code": 80 }],
+      "quotes": ["error", "single"],
+      "semi": ["error", "always"],
+      "comma-dangle": ["error", "never"]
+   },
+   "ignorePatterns": ["dist/", "node_modules/"]
 }

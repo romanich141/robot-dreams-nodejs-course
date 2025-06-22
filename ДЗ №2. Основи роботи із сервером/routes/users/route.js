@@ -1,14 +1,14 @@
-import { getUsers, createUser,  } from '../../services/user.service.js';
+import { getUsers, createUser } from '../../services/user.service.js';
 
 export const GET = async () => {
-    const users = await getUsers();
+   const users = await getUsers();
 
-    return users;
-}
+   return users;
+};
 
 export const POST = async (req, res) => {
-    const user = await createUser(req.body);
-    res.statusCode = 201;
+   const user = await createUser(req.body);
+   res.statusCode = 201;
 
-    return user
-}
+   return user;
+};
